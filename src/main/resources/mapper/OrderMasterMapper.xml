@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.dao.OrderMasterMapper">
+  <resultMap id="BaseResultMap" type="com.zx.model.OrderMaster">
+    <!--@mbg.generated-->
+    <!--@Table order_master-->
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="buyer_name" jdbcType="VARCHAR" property="buyerName" />
+    <result column="buyer_phone" jdbcType="VARCHAR" property="buyerPhone" />
+    <result column="buyer_address" jdbcType="VARCHAR" property="buyerAddress" />
+    <result column="buyer_openid" jdbcType="VARCHAR" property="buyerOpenid" />
+    <result column="order_amount" jdbcType="DECIMAL" property="orderAmount" />
+    <result column="order_status" jdbcType="TINYINT" property="orderStatus" />
+    <result column="pay_status" jdbcType="TINYINT" property="payStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    order_id, buyer_name, buyer_phone, buyer_address, buyer_openid, order_amount, order_status, 
+    pay_status, create_time, update_time
+  </sql>
+</mapper>

@@ -19,3 +19,12 @@ mybatis-plus:
 #    console: "%d-%msg%n"
 #  file:
 #    path: /var/log/
+
+wechat:
+  # 公众账号, 授权
+  mpAppId: wxb837b2e53601593b
+  mpAppSecret: 91d5df2644858da89c22a7ce1261ae4a
+  # 支付/商户号
+  mchId: 7551000001
+  mchKey: C31A2A8FDDD3EB093CE366AED0E7C980
+  notifyUrl: http://xkdtm.natapp1.cc/wechat/authorize

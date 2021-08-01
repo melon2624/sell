@@ -48,7 +48,7 @@ public class ProductInfo {
      * 商品状态,0正常1下架
      */
     @TableField(value = "product_status")
-    private Byte productStatus;
+    private Integer productStatus;
 
     /**
      * 类目编号

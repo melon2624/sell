@@ -6,6 +6,7 @@ import com.zx.enums.OrderStatusEnum;
 import com.zx.enums.PayStatusEnum;
 import com.zx.model.OrderDetail;
 import com.zx.util.EnumUtil;
+import com.zx.util.serializer.Date2LongSerializer;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -39,7 +40,13 @@ public class OrderDTO {
 
     /** 支付状态, 默认为0未支付. */
     private Integer payStatus;
+    /** 创建时间. */
+    @JsonSerialize(using = Date2LongSerializer.class)
+    private Date createTime;
 
+    /** 更新时间. */
+    @JsonSerialize(using = Date2LongSerializer.class)
+    private Date updateTime;
 
     List<OrderDetail> orderDetailList;
 

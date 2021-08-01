@@ -3,12 +3,16 @@ package com.zx.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zx.dto.CartDto;
+import com.zx.enums.ResultEnum;
+import com.zx.exception.SellException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zx.model.ProductInfo;
 import com.zx.dao.ProductInfoMapper;
 import com.zx.service.ProductInfoService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -46,5 +50,38 @@ public class ProductInfoServiceImpl extends ServiceImpl<ProductInfoMapper, Produ
     @Override
     public ProductInfo save1(ProductInfo productInfo) {
         return null;
+    }
+
+    @Override
+    @Transactional
+    public void increaseStock(List<CartDto> cartDtoList) {
+        for (CartDto cartDto:cartDtoList){
+            ProductInfo productInfo=mapper.selectById(cartDto.getProductId());
+            if (productInfo==null){
+                throw  new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            Integer result=productInfo.getProductStock()+cartDto.getProductQuantity();
+            productInfo.setProductStock(result);
+            mapper.updateById(productInfo);
+        }
+
+    }
+
+    @Override
+    @Transactional
+    public void decreaseStock(List<CartDto> cartDtoList) {
+        for (CartDto cartDto:cartDtoList){
+            ProductInfo productInfo=mapper.selectById(cartDto.getProductId());
+            if (productInfo==null){
+                throw  new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            Integer result= productInfo.getProductStock()-cartDto.getProductQuantity();
+                if (result<0){
+                    throw  new  SellException(ResultEnum.PRODUCT_STOCK_ERROR);
+                }
+
+                productInfo.setProductStock(result);
+               mapper.updateById(productInfo);
+            }
     }
 }

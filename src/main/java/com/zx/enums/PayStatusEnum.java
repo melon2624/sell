@@ -1,5 +1,8 @@
 package com.zx.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum PayStatusEnum {
 
     WAIT(0, "等待支付"),

@@ -1,5 +1,9 @@
 package com.zx.enums;
 
+import lombok.Data;
+import lombok.Getter;
+
+@Getter
 public enum OrderStatusEnum {
 
     NEW(0, "新订单"),
